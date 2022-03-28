@@ -1,0 +1,35 @@
+﻿@model MyStore.Models.Product
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+}
+<h1>Xác Nhận Hóa Đơn</h1>
+<form asp-action="Create">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BonusPercentage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BonusPercentage)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemainingStock)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemainingStock)
+        </dd>
+    </dl>
+</form>

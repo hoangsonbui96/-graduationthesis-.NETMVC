@@ -1,0 +1,13 @@
+﻿@model MyStore.Models.LoginModel
+@{
+    ViewData["Title"] = "Logout";
+}
+
+<h1>Log Out</h1>
+
+<h3>Are you sure you want to Log Out ?</h3>
+
+<form asp-action="Logout">
+    <input type="hidden" asp-for="Username" />
+    <input type="submit" value="Logout" class="btn btn-danger" />
+</form>

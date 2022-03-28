@@ -1,0 +1,86 @@
+﻿@model ShoppingCart
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">FRESH FRUITS</h1>
+    <p>WELCOME EVERYBODY TO MY FRESH FRUITS SHOP</a>.</p>
+</div>
+<form asp-controller="Home" asp-action="Index">
+    <span>Search By Name</span>
+    <input type="text" name="keyWord" value="@ViewBag.KeyWord" />
+    <button class="btn btn-info">Search</button>
+</form>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].BonusPercentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].RemainingStock)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            @if (User.Identity.IsAuthenticated)
+            {
+                <tr onclick="location.href ='@Url.Action("Create", "OrderDetails", new { id=item.Id ,
+                                                                                 name=item.Name,
+                                                                                 price=item.Price,
+                                                                                 bonuspercent=item.BonusPercentage})'">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BonusPercentage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RemainingStock)
+                    </td>
+                </tr>
+
+            }
+            else
+            {
+                <tr onclick="location.href ='@Url.Action("CustomerLogin", "Customers")'">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BonusPercentage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RemainingStock)
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>

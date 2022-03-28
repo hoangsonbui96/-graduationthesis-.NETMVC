@@ -1,0 +1,14 @@
+﻿@model Customer
+@{
+    ViewBag.Title = "CongraCreated";
+    var ID = ViewBag.ID;
+}
+
+@{
+    ViewData["Title"] = "CongraCreated";
+}
+
+<h1>Congratulation</h1>
+<p>You have been sucessfully registed Account</p>
+<a asp-action="Details" asp-route-id="@ID">click here to see your profile</a>
+

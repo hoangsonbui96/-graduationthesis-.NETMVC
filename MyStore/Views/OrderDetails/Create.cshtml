@@ -1,0 +1,90 @@
+﻿@model MyStore.Models.OrderDetail
+@{
+    //ViewBag.Title = "Create";
+    var ID = ViewBag.ID;
+    var Name = ViewBag.Name;
+    var Price = ViewBag.Price;
+    var BonusPercentage = ViewBag.BonusPercentage;
+}
+@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Create";
+    string CustomerPhone = ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.MobilePhone).Value;
+}
+
+<h1>Create</h1>
+
+<h4>OrderDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label"></label>
+                <input asp-for="ProductId" class="form-control" value="@ID" readonly />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" value="@Name" readonly />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerPhone" class="control-label"></label>
+                <input asp-for="CustomerPhone" class="form-control" value="@CustomerPhone" readonly />
+                <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" value="@Price" readonly />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BonusPercentage" class="control-label"></label>
+                <input asp-for="BonusPercentage" class="form-control" value="@BonusPercentage" readonly />
+                <span asp-validation-for="BonusPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BonusPoint" class="control-label"></label>
+                <input asp-for="BonusPoint" class="form-control" />
+                <span asp-validation-for="BonusPoint" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quanlity" class="control-label"></label>
+                <input asp-for="Quanlity" class="form-control" />
+                <span asp-validation-for="Quanlity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h4>Xin chào</h4>
+            <p>@User.Claims.FirstOrDefault(i => i.Type == CustomClaim.Fullname).Value</p>
+            <h4>Ship tới địa chỉ</h4>
+            <p>@User.Claims.FirstOrDefault(i => i.Type == CustomClaim.Address).Value</p>
+            <h4>Số điện thoại</h4>
+            <p>@CustomerPhone</p>
+
+
+        }
+        else
+        {
+
+        }
+
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
